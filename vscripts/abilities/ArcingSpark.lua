@@ -6,7 +6,7 @@ require( "addon_game_mode" )
 
 arcingSpark_collisionSize = 30.0
 
-
+-- test
 
 function ArcingSparkUpdate(index)
 	local caster = AAE.timerTable[index].caster 
