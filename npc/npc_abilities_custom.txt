@@ -1,0 +1,1810 @@
+// Dota Heroes File
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	//=================================================================================================================
+	// Templar Assassin: Refraction Holdout
+	//=================================================================================================================
+	"templar_assassin_refraction_holdout"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"17.0 17.0 17.0 17.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_absorb"				"200 300 400 500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"20 40 60 80"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"17.0 17.0 17.0 17.0"
+			}
+		}
+	}
+
+
+
+	"toggle_test_ability"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_TOGGLE DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"OnToggleOn"
+		{
+				"RunScript"
+				{
+						"ScriptFile"    "scripts/vscripts/utils/testfile.lua"
+			"Function"              "AbilityName_OnToggleOn"
+			
+			"zahl"			"1337"
+				}
+	 
+		}
+		"OnToggleOff"
+		{
+				"RunScript"
+				{
+						"ScriptFile"    "scripts/vscripts/utils/testfile.lua"
+			//"ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+						//"Function"              "RTS:Test"
+			"Function"              "AbilityName_OnToggleOff"
+
+			"zahl"			"1337"
+				}
+	 
+		}
+	}
+
+
+
+	"reflex_energy_drain"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"5343"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName" 			"invoker_emp"
+    		"AbilityCastAnimation"			"ACT_DOTA_DISABLED"
+    		"AOERadius"						"%radius"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500 600 700 800"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.0 1.0 1.0 1.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"250 225 200 175"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+      			{
+        			"ScriptFile"		"scripts/vscripts/utils/testfile.lua"
+				"Function"		"AbilityName_OnPointCast"
+        			"Target"        	"POINT"
+        			"Sound"         	"Hero_Enigma.Midnight_Pulse"
+      			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5.0 7.0 9.0 11.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"energy_degen"			"-30 -50 -70 -90"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500 600 700 800"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stickiness"			"1.0 1.0 1.0 1.0"
+			}
+      			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"effect_radius"				"600 700 800 900"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_fireball"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"5344"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" 			"spell_fireball"
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"8000"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.4"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"10"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/Fireball.lua"
+				"Function"			"OnSpellStart"
+				"Target"			"POINT"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_snowball"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"5344"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" 			"spell_snowball"
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"8000"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"3.2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"30"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/Snowball.lua"
+				"Function"			"OnSpellStart"
+				"Target"			"POINT"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_interceptorMissile"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"5343"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" 			"spell_interceptorMissile"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"8000"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.05"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"10"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/InterceptorMissile.lua"
+				"Function"			"OnSpellStart"
+				"Target"			"POINT"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_magicLasso"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"5344"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" 			"spell_magicLasso"
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"8000"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.01"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"10"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/MagicLasso.lua"
+				"Function"			"OnSpellStart"
+				"Target"			"POINT"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_arcingSpark"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"5344"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" 			"spell_arcingSpark"
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"8000"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/ArcingSpark.lua"
+				"Function"			"OnSpellStart"
+				"Target"			"POINT"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_forceStaff"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"					"5322"														
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    	"BaseClass"        				"ability_datadriven" 					//"batrider_firefly"
+		"AbilityTextureName"			"spell_forceStaff"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"3.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"30"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/Forcestaff.lua"
+				"Function"			"OnSpellStart"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_pyroblast"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"5343"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName" 			"spell_pyroblast"
+		"AbilityCastAnimation"			"ACT_DOTA_RUN"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"8000"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"3.0"
+		"AbilityChannelTime"			"3600.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/Pyroblast.lua"
+				"Function"			"OnSpellStart"
+				"Target"			"POINT"
+			}
+		}
+		
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/Pyroblast.lua"
+				"Function"			"OnChannelInterrupted"
+			}
+		}
+		
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/Pyroblast.lua"
+				"Function"			"OnChannelFinish"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_electricVolley"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"1337"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName" 			"spell_electricVolley"
+		"AbilityCastAnimation"			"ACT_DOTA_RUN"
+		
+		"AbilityCastRange"				"8000"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"0.0"
+		"AbilityChannelTime"			"3600.0"
+		"AbilityManaCost"				"30"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/ElectricVolley.lua"
+				"Function"			"OnSpellStart"
+				"Target"			"POINT"
+			}
+		}
+		
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/ElectricVolley.lua"
+				"Function"			"OnChannelInterrupted"
+			}
+		}
+		
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/ElectricVolley.lua"
+				"Function"			"OnChannelFinish"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_hauntingBlaze"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"1337"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" 			"spell_hauntingBlaze"
+		
+		"AbilityCastRange"				"8000"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"1.4"
+		"AbilityManaCost"				"16"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/HauntingBlaze.lua"
+				"Function"			"OnSpellStart"
+				"Target"			"POINT"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_iceAge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"1338"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName" 			"spell_iceAge"
+		"AbilityCastAnimation"			"ACT_DOTA_RUN"
+		
+		"AbilityCastRange"				"8000"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"0.0"
+		"AbilityChannelTime"			"3600.0"
+		"AbilityManaCost"				"20"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/IceAge.lua"
+				"Function"			"OnSpellStart"
+				"Target"			"POINT"
+			}
+		}
+		
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/IceAge.lua"
+				"Function"			"OnChannelInterrupted"
+			}
+		}
+		
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/IceAge.lua"
+				"Function"			"OnChannelFinish"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_frostFork"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"							"5343"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" 			"spell_frostFork"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"8000"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"4.2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/FrostFork.lua"
+				"Function"			"OnSpellStart"
+				"Target"			"POINT"
+			}
+		}
+	}
+
+
+
+	"aae_m_mage_mcBomb"
+  	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"					"5322"														
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    	"BaseClass"        				"ability_datadriven" 					//"batrider_firefly"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"spell_mc-bombn"
+
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"40"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/McBomb.lua"
+				"Function"			"OnSpellStart"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_frostring"
+  	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"					"5322"														
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    	"BaseClass"        				"ability_datadriven" 					//"batrider_firefly"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"spell_frostring"
+
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/Frostring.lua"
+				"Function"			"OnSpellStart"
+			}
+		}
+	}
+	
+	
+	
+	"aae_m_mage_iceBlock"
+  	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"					"5322"														
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    	"BaseClass"        				"ability_datadriven" 					//"batrider_firefly"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"spell_iceBlock"
+
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"5"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/IceBlock.lua"
+				"Function"			"OnSpellStart"
+			}
+		}
+		
+		"OnOrder"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/IceBlock.lua"
+				"Function"			"OnOrder"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"IsHidden"			"1"
+				"OnOrder"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/abilities/IceBlock.lua"
+						"Function"			"OnOrder"
+					}
+				}
+			}
+			
+		}
+	}
+	
+	
+	
+	"aae_m_mage_deadlyRange"
+  	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		//"ID"					"5322"														
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    	"BaseClass"        				"ability_datadriven"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"spell_deadlyRange"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"120"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/abilities/DeadlyRange.lua"
+				"Function"			"OnSpellStart"
+			}
+		}
+	}
+	
+	
+	
+	"aae_d_mage_mcBomb_explosion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/mcbomb/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/mcbomb/explosion.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	
+	"aae_d_mage_mcBomb_missile"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/dire_fx/"
+			//"particle_folder"				"particles/basic_rope/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						//"EffectName" "particles/basic_rope/basic_rope.vpcf"
+						"EffectName" "particles/econ/items/lina/lina_head_headflame/lina_flame_hand_headflame.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	"aae_d_mage_fireball_missile"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/fireball/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/fireball/axe_vanguard_passive.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	"aae_d_mage_fireball_explosion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/fireball/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/fireball/explosion.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	"aae_d_mage_mcBomb_explosion_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/mcbomb/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/mcbomb/explosion_1.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	"aae_d_mage_deadlyRange_missile"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/econ/items/lina/lina_head_headflame/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/econ/items/lina/lina_head_headflame/lina_flame_hand_headflame.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	
+	"aae_d_mage_pyroblast_cast"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/pyroblast/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/pyroblast/phoenix_fire_spirit_burn.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	"aae_d_mage_pyroblast_missile"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/pyroblast/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/pyroblast/pyro_missile.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	"aae_d_mage_pyroblast_missile_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/pyroblast/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/pyroblast/explosion_1.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	"aae_d_mage_forceStaff"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/items_fx/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/items_fx/force_staff.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	
+	"aae_d_mage_frostFork"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/units/heroes/hero_ancient_apparition/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/units/heroes/hero_ancient_apparition/ancient_ice_vortex.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	"aae_d_lightning_touch"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/lightning/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/lightning/stormspirit_electric_vortex_owner_1.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	
+	"aae_d_spark"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/items_fx/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/items_fx/force_staff.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	
+	"aae_d_mage_arcingSpark"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/arcingspark/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/arcingspark/stormspirit_ball_lightning_sphere_new.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	"aae_d_mage_frostring"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/units/heroes/hero_ancient_apparition/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_debuff.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	"aae_d_mage_frostring_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+		"precache"
+		{
+			"particle_folder"				"particles/items2_fx/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/items2_fx/shivas_guard_active.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	
+	"aae_d_mage_magicLasso"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	
+	"lightning_spell"
+	{
+		"precache"
+		{
+			"particle_folder"				"particles/units/heroes/hero_wisp/"
+		}
+	
+		
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"wisp_tether"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.001 0.001 0.001 0.001"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.0 12.0 12.0 12.0"
+		"AbilityDuration"				"10000.0 12.0 12.0 12.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"1 40 40 40"
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"10000 1800 1800 1800"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"5000 900 900 900"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movespeed"					"17"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"latch_distance"			"5000 700 700 700"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"latch_speed"				"5000 1000 1000 1000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tether_duration"			"500.0 2.0 2.0 2.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tether_heal_amp"			"1.5"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"			"-100"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attackslow_tooltip"			"-100"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"0.75 1.25 1.75 2.25"
+			}
+		}
+		
+		
+		
+	}
+	
+	"lightning_spell_settings"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+
+
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	
+	"aae_d_interceptorMissileProperties"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+		
+		"precache"
+		{
+			"particle_folder"				"particles/econ/items/lina/lina_head_headflame/"
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"particleModifier"
+			{
+				"Passive" "1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/econ/items/lina/lina_head_headflame/lina_flame_hand_headflame.vpcf"
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "5"
+					}
+				}
+			}
+			
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					
+				}
+			}
+		}
+	}
+	
+	
+	"aae_rune_properties"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_datadriven"
+		"AbilityBehavior"              "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"           ""
+		"MaxLevel"                     "1"
+		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"phasedMovementModifier"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+//"MODIFIER_STATE_NO_HEALTH_BAR"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"				"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+
+
+}

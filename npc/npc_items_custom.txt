@@ -1,0 +1,520 @@
+"DOTAAbilities"
+{
+	"item_Fireball"
+	{
+		"ID"							"1004"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_fireball"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	"item_MC-Bomb"
+	{
+		"ID"							"1005"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_mc-bomb"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	
+	"item_DeadlyRange"
+	{
+		"ID"							"1006"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_deadlyRange"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	
+	"item_ForceStaff"
+	{
+		"ID"							"1007"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_forceStaff"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	
+	"item_Pyroblast"
+	{
+		"ID"							"1008"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_pyroblast"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	
+	
+	"item_FrostFork"
+	{
+		"ID"							"1009"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_frostFork"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	"item_ArcingSpark"
+	{
+		"ID"							"1011"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_arcingSpark"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	
+	"item_Frostring"
+	{
+		"ID"							"1012"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_frostring"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	
+	"item_MagicLasso"
+	{
+		"ID"							"1013"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_magicLasso"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	
+	"item_InterceptorMissile"
+	{
+		"ID"							"1014"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_interceptorMissile"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	
+	"item_Snowball"
+	{
+		"ID"							"1015"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_snowball"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	
+	"item_IceBlock"
+	{
+		"ID"							"1016"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_iceBlock"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	"item_HauntingBlaze"
+	{
+		"ID"							"1017"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_hauntingBlaze"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	"item_ElectricVolley"
+	{
+		"ID"							"1018"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_electricVolley"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	"item_IceAge"
+	{
+		"ID"							"1019"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_datadriven"	//item_flask
+		"AbilityTextureName"			"item_spell_iceAge"
+		"Model"							"models/props_gameplay/salve_red.vmdl"
+		
+		
+		"ItemShopTags"					""
+		"SecretShop"						"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+	}
+	
+	
+	// Modifiers
+	
+	"item_modifier_master"
+	{
+		"ID"							"1010"
+ 
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_datadriven"
+ 
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		
+		"precache"
+		{
+			"particle_folder"				"particles/econ/items/lina/lina_head_headflame/"
+			"particle_folder"				"particles/units/heroes/hero_crystalmaiden/"
+			
+			
+			
+		}
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+ 
+		"Modifiers"
+		{
+				
+			"DeadlyRange_Dot"
+			{
+				"TextureName" "item_spell_deadlyRange"
+				"EffectName" "particles/econ/items/lina/lina_head_headflame/lina_flame_hand_headflame.vpcf"
+				"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"FrostFork_SlowEffect"
+			{
+				"TextureName" "item_spell_frostFork"
+				"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"Frostring_SlowEffect"
+			{
+				"TextureName" "item_spell_frostring"
+				"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"MagicLasso_Hook"
+			{
+				"TextureName" "item_spell_magicLasso"
+				//"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				//"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"InterceptorMissile_Symbol"
+			{
+				"TextureName" "item_spell_interceptorMissile"
+				//"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				//"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"IceBlock_Symbol"
+			{
+				"TextureName" "item_spell_iceBlock"
+				"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"Snowball_Symbol"
+			{
+				"TextureName" "item_spell_snowball"
+				//"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				//"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"Snowball_SlowEffect"
+			{
+				"TextureName" "item_spell_snowball"
+				"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"IceAge_SlowEffect"
+			{
+				"TextureName" "item_spell_snowball"
+				"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"Rune_Haste"
+			{
+				"TextureName" "item_spell_deadlyRange"
+				"EffectName" "particles/econ/items/lina/lina_head_headflame/lina_flame_hand_headflame.vpcf"
+				"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"Rune_DoubleDamage"
+			{
+				"TextureName" "item_spell_snowball"
+				//"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				//"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+			
+			"Rune_Regeneration"
+			{
+				"TextureName" "item_spell_deadlyRange"
+				"EffectName" "particles/econ/items/lina/lina_head_headflame/lina_flame_hand_headflame.vpcf"
+				"EffectAttachType" "follow_center"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+		}
+	}
+	
+	
+	
+}

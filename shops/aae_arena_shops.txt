@@ -1,0 +1,93 @@
+"dota_shops"
+{
+	"consumables"
+	{
+		"item"		"item_Fireball"
+		"item"		"item_MC-Bomb"
+		"item"		"item_DeadlyRange"
+		"item"		"item_Pyroblast"
+		"item"		"item_HauntingBlaze"
+		
+		
+		
+		
+		
+		
+		
+	}
+
+	"attributes"
+	{
+		
+		
+		
+	}
+
+	"weapons_armor"
+	{
+		"item"		"item_ArcingSpark"
+		"item"		"item_MagicLasso"
+		"item"		"item_InterceptorMissile"
+		"item"		"item_ForceStaff"
+		"item"		"item_ElectricVolley"
+	}
+	
+	"misc"
+	{
+		"item"		"item_FrostFork"
+		"item"		"item_Frostring"
+		"item"		"item_Snowball"
+		"item"		"item_IceBlock"
+		"item"		"item_IceAge"
+	}	
+	
+	// Level 1 - Green Recipes
+	"basics"
+	{
+
+	}
+
+	// Level 2 - Blue Recipes
+	"support"
+	{
+
+	}
+	
+	"magics"
+	{
+
+	}
+	
+	// Level 3 - Purple Recipes
+	"defense"
+	{
+
+	}
+	
+	"weapons"
+	{
+
+	}
+	
+	// Level 4 - Orange / Orb / Artifacts
+	"artifacts"
+	{
+
+	}
+
+	"sideshop1"
+	{
+
+	}
+
+	"sideshop2"
+	{
+
+	}
+	
+	"secretshop"
+	{
+
+
+	}
+}
