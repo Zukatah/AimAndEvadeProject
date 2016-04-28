@@ -16,6 +16,7 @@ function DeadlyRange_MoveMissiles (index)
 	local casterFacingX = AAE.timerTable[index].casterFacingX
 	local casterFacingY = AAE.timerTable[index].casterFacingY
 	local missileGroup = AAE.timerTable[index].missileGroup
+	local timerIndexSound = AAE.timerTable[index].timerIndexSound
 	local curMissileCount = 0
 	
 	for key, value in pairs(missileGroup) do
@@ -60,6 +61,7 @@ function DeadlyRange_MoveMissiles (index)
 	end
 	
 	if (missilesCreated == 16 and curMissileCount == 0) then
+		StopSoundOnUnit(timerIndexSound)
 		AAE.timerTable[index] = nil
 	else
 		return 0.01
@@ -96,17 +98,17 @@ end
 
 function OnSpellStart ( keys )
 	local caster = keys.caster
-	local casterOwner = caster:GetOwner()
 	local casterLoc = caster:GetAbsOrigin()
-	local intervalCount = 0
 	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
 	local casterFacing = (caster:GetAngles()).y * 0.01745329
 	local dX = math.cos(casterFacing)
 	local dY = math.sin(casterFacing)
-	local missileGroup = { }
+	local missileGroup = {}
+
+	local timerIndexSound = PlaySoundOnUnitInit("Hero_Phoenix.SunRay.Loop", caster, 5.0, true)
 	
 	local timerIndex = GetTimerIndex()
-	AAE.timerTable[timerIndex] = { caster = caster, missilesCreated = intervalCount, cliffLevel = cliffLevel, casterFacing = casterFacing, casterFacingX = dX, casterFacingY = dY, missileGroup = missileGroup }
+	AAE.timerTable[timerIndex] = { caster = caster, missilesCreated = 0, cliffLevel = cliffLevel, casterFacing = casterFacing, casterFacingX = dX, casterFacingY = dY, missileGroup = missileGroup, timerIndexSound = timerIndexSound }
 	AAE.Utils.Timer.Register( DeadlyRange_MoveMissiles, 0.01, timerIndex )
 	AAE.Utils.Timer.Register( DeadlyRange_CreateMissiles, 0.399, timerIndex )
 end

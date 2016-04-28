@@ -57,13 +57,11 @@ function OnSpellStart ( keys )
 	local casterFacing = caster:GetAngles().y * 0.01745329
 	local casterLoc = caster:GetAbsOrigin()
 	local normVecDir = Vector( math.cos(casterFacing), math.sin(casterFacing), 0.0 )
-	local intervalCount = 0
 	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
 	local timerIndex = GetTimerIndex()
 	
 	caster:Stop()
 	IncreaseBuffCountOnUnit (caster, "knockback", timerIndex)
-	
 	PlaySoundOnUnitInit("DOTA_Item.ForceStaff.Activate", caster, 1.0, false)
 	
 	AAE.timerTable[timerIndex] = { caster = caster, intervalCount = 0, cliffLevel = cliffLevel, normVecDir = normVecDir, deinVater = deinVater }

@@ -6,7 +6,7 @@ require( "addon_game_mode" )
 
 arcingSpark_collisionSize = 30.0
 
--- test
+
 
 function ArcingSparkUpdate(index)
 	local caster = AAE.timerTable[index].caster 
@@ -39,7 +39,7 @@ function ArcingSparkUpdate(index)
 	
 	AAE.timerTable[index].intervalCount = intervalCount								-- save intervalCount in table
 	
-	for i, value in pairs(AAE.lightningTab) do										-- iterate through all lightnings
+	for i, _ in pairs(AAE.lightningTab) do										-- iterate through all lightnings
 		if (normVecDir.x * AAE.lightningTab[i].normY == -normVecDir.y * AAE.lightningTab[i].normX) then			-- test if both (lightning and arcSpark) lines parallel
 			arcSparkPar = -1.0
 		elseif (AAE.lightningTab[i].normY == 0.0) then
@@ -144,8 +144,8 @@ function ArcingSparkUpdate(index)
 			local minDist = 1000000
 			local minDistUnit = nil
 			
-			for key, value in pairs (AAE.allUnits) do
-				local pickedUnit = EntIndexToHScript(key)
+			for pickedUnit, _ in pairs (AAE.allUnits) do
+				--local pickedUnit = EntIndexToHScript(key)
 				local pickedUnitLoc = pickedUnit:GetAbsOrigin()
 				local pickedUnitX = pickedUnitLoc.x
 				local pickedUnitY = pickedUnitLoc.y
@@ -192,7 +192,6 @@ end
 function OnSpellStart ( keys )
 	local caster = keys.caster
 	local casterOwner = caster:GetOwner()
-	local missileDummy
 	local casterLoc = caster:GetAbsOrigin()
 	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
 	local timerIndex = GetTimerIndex()
@@ -213,11 +212,11 @@ function OnSpellStart ( keys )
 		normVecDir=Vector(1.0, 0.0, 0.0)
 	end
 	
-	missileDummy = CreateUnitByName("aae_dummy_mage_arcingSpark", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
+	local missileDummy = CreateUnitByName("aae_dummy_mage_arcingSpark", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
 	missileDummy:FindAbilityByName("aae_d_mage_arcingSpark"):SetLevel(1)
 	AAE.arcSparkGroup[missileDummy] = {}
 	
-	for key, value in pairs (AAE.lightningTab) do --TODO: Side check
+	for key, _ in pairs (AAE.lightningTab) do --TODO: Side check
 		if (-AAE.lightningTab[key].normY * casterLoc.x + AAE.lightningTab[key].normX * casterLoc.y >= -AAE.lightningTab[key].normY * AAE.lightningTab[key].startX + AAE.lightningTab[key].normX * AAE.lightningTab[key].startY) then
 			AAE.arcSparkGroup[missileDummy][key] = true --right = true, left = false
 		else

@@ -114,7 +114,6 @@ end
 function OnSpellStart ( keys )
 	local caster = keys.caster
 	local castLoc = caster:GetAbsOrigin()
-	local intervalCount = 0
 	local cliffLevel = (GetGroundPosition(castLoc, nil)).z
 	local timerIndex = GetTimerIndex()
 	local lightTab = {}
@@ -139,6 +138,6 @@ function OnSpellStart ( keys )
 	
 	posTab[0] = castLoc
 	
-	AAE.timerTable[timerIndex] = { caster = caster, intervalCount = intervalCount, normVecDir = normVecDir, posTab = posTab, lightTab = lightTab, dummyTab = dummyTab, hookedUnit = nil }
+	AAE.timerTable[timerIndex] = { caster = caster, intervalCount = 0, normVecDir = normVecDir, posTab = posTab, lightTab = lightTab, dummyTab = dummyTab, hookedUnit = nil }
 	AAE.Utils.Timer.Register( MagicLassoUpdate, 0.066666666, timerIndex )
 end

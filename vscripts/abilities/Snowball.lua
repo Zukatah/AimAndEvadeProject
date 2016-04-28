@@ -18,8 +18,8 @@ function Snowball_SlowUnits(index)
 	local snowY = AAE.timerTable[index].snowY
 	AAE.timerTable[index].intervalCount = intervalCount
 	
-	for key, value in pairs(AAE.allUnits) do
-		local pickedUnit = EntIndexToHScript(key)
+	for pickedUnit, _ in pairs(AAE.allUnits) do
+		--local pickedUnit = EntIndexToHScript(key)
 		local pickedUnitPos = pickedUnit:GetAbsOrigin()
 		local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
 		local vecUnitSnowX = pickedUnitPos.x - snowX
@@ -71,30 +71,30 @@ function Snowball_MoveMissiles(index)
 	if (snowball1.missile:IsAlive()) then
 		if (cliffLevel + 5.0 < newCliffLevelS1) then
 			snowball1.missile:ForceKill(true)
-			for key, value in pairs(snowball1.group) do
-				DecreaseBuffCountOnUnit (key, "snowball", index)
-				FindClearSpaceForUnit(key, key:GetAbsOrigin(), true)
+			for pickedUnit, _ in pairs(snowball1.group) do
+				DecreaseBuffCountOnUnit (pickedUnit, "snowball", index)
+				FindClearSpaceForUnit(pickedUnit, pickedUnit:GetAbsOrigin(), true)
 			end
 			snowball1.group = {}
 			snowball1.prevGroup = {}
 		else
 			snowball1.missile:SetAbsOrigin(newSnowball1Pos)
 			
-			for key, value in pairs(snowball1.group) do
-				key:SetAbsOrigin(newSnowball1Pos)
-				snowball1.group[key] = snowball1.group[key] - 1
-				if (snowball1.group[key] <= 0 or GetBuffCountOnUnit (key, "snowball", index) <= 0) then
-					DecreaseBuffCountOnUnit (key, "snowball", index)
-					FindClearSpaceForUnit(key, key:GetAbsOrigin(), true)
-					snowball1.prevGroup[key] = true
-					snowball1.group[key] = nil
+			for pickedUnit, _ in pairs(snowball1.group) do
+				pickedUnit:SetAbsOrigin(newSnowball1Pos)
+				snowball1.group[pickedUnit] = snowball1.group[pickedUnit] - 1
+				if (snowball1.group[pickedUnit] <= 0 or GetBuffCountOnUnit (pickedUnit, "snowball", index) <= 0) then
+					DecreaseBuffCountOnUnit (pickedUnit, "snowball", index)
+					FindClearSpaceForUnit(pickedUnit, pickedUnit:GetAbsOrigin(), true)
+					snowball1.prevGroup[pickedUnit] = true
+					snowball1.group[pickedUnit] = nil
 				end
 			end
 			
 			if (maxIntervals > intervalCount) then
 				
-				for key, value in pairs(AAE.allUnits) do
-					local pickedUnit = EntIndexToHScript(key)
+				for pickedUnit, _ in pairs(AAE.allUnits) do
+					--local pickedUnit = EntIndexToHScript(key)
 					local pickedUnitPos = pickedUnit:GetAbsOrigin()
 					local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
 					local vecDistUnitSnowball = pickedUnitPos - newSnowball1Pos
@@ -118,9 +118,9 @@ function Snowball_MoveMissiles(index)
 			else
 				snowball1.reachedTarget = true
 				snowball1.missile:ForceKill(true)
-				for key, value in pairs(snowball1.group) do
-					DecreaseBuffCountOnUnit (key, "snowball", index)
-					FindClearSpaceForUnit(key, key:GetAbsOrigin(), true)
+				for pickedUnit, _ in pairs(snowball1.group) do
+					DecreaseBuffCountOnUnit (pickedUnit, "snowball", index)
+					FindClearSpaceForUnit(pickedUnit, pickedUnit:GetAbsOrigin(), true)
 				end
 				snowball1.group = {}
 				snowball1.prevGroup = {}
@@ -131,30 +131,30 @@ function Snowball_MoveMissiles(index)
 	if (snowball2.missile:IsAlive()) then
 		if (cliffLevel + 5.0 < newCliffLevelS2) then
 			snowball2.missile:ForceKill(true)
-			for key, value in pairs(snowball2.group) do
-				DecreaseBuffCountOnUnit (key, "snowball", index)
-				FindClearSpaceForUnit(key, key:GetAbsOrigin(), true)
+			for pickedUnit, _ in pairs(snowball2.group) do
+				DecreaseBuffCountOnUnit (pickedUnit, "snowball", index)
+				FindClearSpaceForUnit(pickedUnit, pickedUnit:GetAbsOrigin(), true)
 			end
 			snowball2.group = {}
 			snowball2.prevGroup = {}
 		else
 			snowball2.missile:SetAbsOrigin(newSnowball2Pos)
 			
-			for key, value in pairs(snowball2.group) do
-				key:SetAbsOrigin(newSnowball2Pos)
-				snowball2.group[key] = snowball2.group[key] - 1
-				if (snowball2.group[key] == 0 or GetBuffCountOnUnit (key, "snowball", index) <= 0) then
-					DecreaseBuffCountOnUnit (key, "snowball", index)
-					FindClearSpaceForUnit(key, key:GetAbsOrigin(), true)
-					snowball2.prevGroup[key] = true
-					snowball2.group[key] = nil
+			for pickedUnit, _ in pairs(snowball2.group) do
+				pickedUnit:SetAbsOrigin(newSnowball2Pos)
+				snowball2.group[pickedUnit] = snowball2.group[pickedUnit] - 1
+				if (snowball2.group[pickedUnit] == 0 or GetBuffCountOnUnit (pickedUnit, "snowball", index) <= 0) then
+					DecreaseBuffCountOnUnit (pickedUnit, "snowball", index)
+					FindClearSpaceForUnit(pickedUnit, pickedUnit:GetAbsOrigin(), true)
+					snowball2.prevGroup[pickedUnit] = true
+					snowball2.group[pickedUnit] = nil
 				end
 			end
 			
 			if (maxIntervals > intervalCount) then
 				
-				for key, value in pairs(AAE.allUnits) do
-					local pickedUnit = EntIndexToHScript(key)
+				for pickedUnit, _ in pairs(AAE.allUnits) do
+					--local pickedUnit = EntIndexToHScript(key)
 					local pickedUnitPos = pickedUnit:GetAbsOrigin()
 					local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
 					local vecDistUnitSnowball = pickedUnitPos - newSnowball2Pos
@@ -166,7 +166,7 @@ function Snowball_MoveMissiles(index)
 							if (math.abs(dX) < snowball_collisionSize + pickedUnitSize and math.abs(dY) < snowball_collisionSize + pickedUnitSize) then
 								if (dX*dX + dY*dY <= (snowball_collisionSize + pickedUnitSize)*(snowball_collisionSize + pickedUnitSize)) then
 									if (GetBuffCountOnUnit (pickedUnit, "magicLasso") <= 0 and GetBuffCountOnUnit (pickedUnit, "snowball") <= 0) then
-										snowball2.group[pickedUnit] = 70 --Unit is for 70 intervals (2.1 seconds) within a snowball
+										snowball2.group[pickedUnit] = 70																			--Unit is for 70 intervals (2.1 seconds) within a snowball
 										IncreaseBuffCountOnUnit (pickedUnit, "snowball", index)
 									end
 								end
@@ -178,9 +178,9 @@ function Snowball_MoveMissiles(index)
 			else
 				snowball2.reachedTarget = true
 				snowball2.missile:ForceKill(true)
-				for key, value in pairs(snowball2.group) do
-					DecreaseBuffCountOnUnit (key, "snowball", index)
-					FindClearSpaceForUnit(key, key:GetAbsOrigin(), true)
+				for pickedUnit, _ in pairs(snowball2.group) do
+					DecreaseBuffCountOnUnit (pickedUnit, "snowball", index)
+					FindClearSpaceForUnit(pickedUnit, pickedUnit:GetAbsOrigin(), true)
 				end
 				snowball2.group = {}
 				snowball2.prevGroup = {}
@@ -214,7 +214,6 @@ function OnSpellStart ( keys )
 	local casterLoc = caster:GetAbsOrigin()
 	local snowball1 = {} --missile, caughtUnits
 	local snowball2 = {}
-	local intervalCount = 0
 	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
 	local timerIndex = GetTimerIndex()
 	
@@ -252,7 +251,7 @@ function OnSpellStart ( keys )
 	snowball1.reachedTarget = false
 	snowball2.reachedTarget = false
 	
-	AAE.timerTable[timerIndex] = { caster = caster, curLinePos = casterLoc, snowball1 = snowball1, snowball2 = snowball2, intervalCount = intervalCount, maxIntervals = maxIntervals, cliffLevel = cliffLevel, normVecDir = normVecDir }
+	AAE.timerTable[timerIndex] = { caster = caster, curLinePos = casterLoc, snowball1 = snowball1, snowball2 = snowball2, intervalCount = 0, maxIntervals = maxIntervals, cliffLevel = cliffLevel, normVecDir = normVecDir }
 	AAE.Utils.Timer.Register( Snowball_MoveMissiles, 0.01, timerIndex )
 end
 

@@ -69,7 +69,7 @@ function FrostForkUpdate(index)
 		
 	end
 	
-	for key, value in pairs(newMissiles) do
+	for key, _ in pairs(newMissiles) do
 		missileGroup[key] = { direction = -1 }
 	end
 	
@@ -100,7 +100,6 @@ function OnSpellStart ( keys )
 	local casterOwner = caster:GetOwner()
 	local casterLoc = caster:GetAbsOrigin()
 	local missileDummy
-	local intervalCount = 0
 	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
 	local timerIndex = GetTimerIndex()
 	local missileGroup = { }

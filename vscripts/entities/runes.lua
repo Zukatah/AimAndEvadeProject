@@ -78,8 +78,8 @@ function RunePickup()
     for runeUnit, runeInfoTable in pairs (AAE.runes) do
         collision = false
 
-        for physicUnit, wayne in pairs (AAE.allUnits) do
-            local pickedUnit = EntIndexToHScript(physicUnit)
+        for pickedUnit, _ in pairs (AAE.allUnits) do
+            --local pickedUnit = EntIndexToHScript(physicUnit)
             local pickedUnitLoc = pickedUnit:GetAbsOrigin()
             local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
 

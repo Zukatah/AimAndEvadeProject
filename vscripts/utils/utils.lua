@@ -308,9 +308,9 @@ end
 
 
 function IsMissileColliding (caster, missileLoc, radius)
-	for key, value in pairs(AAE.allUnits) do
+	for pickedUnit, _ in pairs(AAE.allUnits) do
 	
-		local pickedUnit = EntIndexToHScript(key)
+		--local pickedUnit = EntIndexToHScript(key)
 		local pickedUnitPos = pickedUnit:GetAbsOrigin()
 		local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
 		
@@ -388,9 +388,9 @@ end
 function StartCombatMode (targetUnit, attackingPlayerId) --Check if this function or TimerUpdate runs first in a game frame.
 	if (AAE.combatSystem[targetUnit] == nil) then
 		AAE.combatSystem[targetUnit] = {}
-		AAE.combatSystem[targetUnit][attackingPlayerId] = AAE._lastTime + 5.0
+		AAE.combatSystem[targetUnit][attackingPlayerId] = AAE.currentTime + 5.0
 	else
-		AAE.combatSystem[targetUnit][attackingPlayerId] = AAE._lastTime + 5.0
+		AAE.combatSystem[targetUnit][attackingPlayerId] = AAE.currentTime + 5.0
 	end
 end
 
@@ -402,7 +402,7 @@ function PlaySoundOnUnitInit(soundname, unit, soundDuration, loop)
 	local unitOwner = unit:GetOwner()
 	
 	local soundDummy = CreateUnitByName("aae_dummy_loop_sounds", unitLoc, false, unitOwner, unitOwner, unit:GetTeamNumber())
-	soundDummy:FindAbilityByName("aae_d_mage_fireball_explosion"):SetLevel(1)
+	soundDummy:FindAbilityByName("aae_d_mage_fireball_explosion"):SetLevel(1)															--Just to remove unit collision, selectability, minimap appearance, health bar...
 	soundDummy:EmitSound(soundname)
 	
 	AAE.timerTable[timerIndex] = { soundname = soundname, unit = unit, soundDummy = soundDummy, soundDuration = soundDuration, loop = loop}
@@ -493,24 +493,14 @@ function RandomEnterArena(unit)
 	end
 	unit:SetAbsOrigin(Vector(x, y, 128))
 	FindClearSpaceForUnit(unit, unit:GetAbsOrigin(), true)
-	AAE.allUnits[unit:GetEntityIndex()].lightProtTime = AAE._lastTime + 2.5
-end
-
-
-
---Necessary for picking game mode; TODO: Try to substiture by using dialogs
-function TelPlayerOne (index)
-	local spawnedUnit = AAE.timerTable[index].spawnedUnit
-	local point =  Entities:FindByName( nil, "SelectGameModeArea1" ):GetAbsOrigin()
-	FindClearSpaceForUnit(spawnedUnit, point, false)
-	spawnedUnit:Stop()
+	AAE.allUnits[unit].lightProtTime = AAE.currentTime + 2.5
 end
 
 
 
 --Set player start gold
-function SetStartGold ()
+function SetPlayerGold (amount)
 	for variable = 0, 9, 1 do
-		PlayerResource:SetGold(variable, 600, false)
+		PlayerResource:SetGold(variable, amount, false)
 	end
 end

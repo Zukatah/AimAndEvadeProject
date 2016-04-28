@@ -18,14 +18,14 @@ function FireballUpdate(index)
 	local normVecDir = AAE.timerTable[index].normVecDir
 	
 	local casterOwner = caster:GetOwner()
-	local newFireballLoc = VectorInMapBounds(lastFireballLoc + (normVecDir * 50.0))
+	local newFireballLoc = VectorInMapBounds(lastFireballLoc + (normVecDir * 50.0)) --50
 	local newCliffLevel = (GetGroundPosition(newFireballLoc, nil)).z
 	
 	if (cliffLevel + 5.0 < newCliffLevel) then
 		newFireballLoc = lastFireballLoc
 	else
 		missileDummy:SetAbsOrigin(newFireballLoc)
-		if (intervalCount >= 20) then
+		if (intervalCount >= 20) then --20
 		else
 			local explosion = IsMissileColliding (caster, newFireballLoc, fireball_collisionSize)
 			
@@ -42,9 +42,11 @@ function FireballUpdate(index)
 	explosionDummy:FindAbilityByName("aae_d_mage_fireball_explosion"):SetLevel(1)
 	RemoveDummyTimedInit(explosionDummy, 3.0)
 	RemoveDummyTimedInit(missileDummy, 0.4)
+
+	PlaySoundOnUnitInit("Hero_Batrider.Flamebreak.Impact", explosionDummy, 2.0, false)
 	
-	for key, value in pairs(AAE.allUnits) do
-		local pickedUnit = EntIndexToHScript(key)
+	for pickedUnit, _ in pairs(AAE.allUnits) do
+		--local pickedUnit = EntIndexToHScript(key)
 		local pickedUnitPos = pickedUnit:GetAbsOrigin()
 		local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
 		local vecDistUnitExplosion = pickedUnitPos - newFireballLoc
@@ -78,9 +80,7 @@ end
 function OnSpellStart ( keys )
 	local caster = keys.caster
 	local casterOwner = caster:GetOwner()
-	local missileDummy
 	local casterLoc = caster:GetAbsOrigin()
-	local intervalCount = 0
 	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
 	local timerIndex = GetTimerIndex()
 	
@@ -100,9 +100,11 @@ function OnSpellStart ( keys )
 		normVecDir=Vector(1.0, 0.0, 0.0)
 	end
 	
-	missileDummy = CreateUnitByName("aae_dummy_mage_fireball_missile", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
+	local missileDummy = CreateUnitByName("aae_dummy_mage_fireball_missile", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
 	missileDummy:FindAbilityByName("aae_d_mage_fireball_missile"):SetLevel(1)
+
+	PlaySoundOnUnitInit("Hero_Batrider.Flamebreak", missileDummy, 2.0, false)
 	
-	AAE.timerTable[timerIndex] = { caster = caster, missileDummy = missileDummy, lastFireballLoc = casterLoc, intervalCount = intervalCount, cliffLevel = cliffLevel, normVecDir = normVecDir }
+	AAE.timerTable[timerIndex] = { caster = caster, missileDummy = missileDummy, lastFireballLoc = casterLoc, intervalCount = 0, cliffLevel = cliffLevel, normVecDir = normVecDir }
 	AAE.Utils.Timer.Register( FireballUpdate, 0.01, timerIndex )
 end

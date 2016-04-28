@@ -6,7 +6,6 @@ require( "addon_game_mode" )
 
 function IceBlockUpdate (index)
 	local caster = AAE.timerTable[index].caster
-	local casterOwner = caster:GetOwner()
 	local intervalCount = AAE.timerTable[index].intervalCount + 1
 	local missileDummy = AAE.timerTable[index].missileDummy
 	AAE.timerTable[index].intervalCount = intervalCount
@@ -29,16 +28,15 @@ function OnSpellStart ( keys )
 	local caster = keys.caster
 	local casterOwner = caster:GetOwner()
 	local casterLoc = caster:GetAbsOrigin()
-	local intervalCount = 0
 	local timerIndex = GetTimerIndex()
 	
-	missileDummy = CreateUnitByName("aae_dummy_mage_frostring", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
+	local missileDummy = CreateUnitByName("aae_dummy_mage_frostring", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
 	missileDummy:FindAbilityByName("aae_d_mage_frostring"):SetLevel(1)
 	
 	caster:Stop()
 	IncreaseBuffCountOnUnit (caster, "iceBlock", timerIndex)
 	
-	AAE.timerTable[timerIndex] = { caster = caster, intervalCount = intervalCount, missileDummy = missileDummy }
+	AAE.timerTable[timerIndex] = { caster = caster, intervalCount = 0, missileDummy = missileDummy }
 	
 	AAE.Utils.Timer.Register( IceBlockUpdate, 0.01, timerIndex )
 end
@@ -51,9 +49,7 @@ function OnOrder (keys)
 		RemoveBuffTypeFromUnit (caster, "iceBlock")
 	end
 	
-	--for key, value in pairs (keys) do
-	--	PrintLinkedConsoleMessage( "\n" .. "key " .. tostring(key) .. " value " .. tostring(value), "")
-	--end
+	--for key, value in pairs (keys) do PrintLinkedConsoleMessage( "\n" .. "key " .. tostring(key) .. " value " .. tostring(value), "") end
 end
 
 

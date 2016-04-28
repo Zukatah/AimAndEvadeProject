@@ -15,6 +15,7 @@ function McBombUpdate (index)
 	local lastBombLoc = AAE.timerTable[index].lastBombLoc
 	local intervalCount = AAE.timerTable[index].intervalCount + 1
 	local cliffLevel = AAE.timerTable[index].cliffLevel
+	local timerIndexSound = AAE.timerTable[index].timerIndexSound
 	
 	local casterOwner = caster:GetOwner()
 	local curCasterLoc = caster:GetAbsOrigin()
@@ -39,9 +40,10 @@ function McBombUpdate (index)
 			return 0.01
 		end
 	end
-	
+
+	local explosionDummy
 	for i=0, 1, 1 do
-		local explosionDummy = CreateUnitByName("aae_dummy_mage_mcBomb_explosion", newBombLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
+		explosionDummy = CreateUnitByName("aae_dummy_mage_mcBomb_explosion", newBombLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
 		explosionDummy:FindAbilityByName("aae_d_mage_mcBomb_explosion"):SetLevel(1)
 		RemoveDummyTimedInit(explosionDummy, 3.0)
 		
@@ -50,10 +52,12 @@ function McBombUpdate (index)
 		RemoveDummyTimedInit(explosionDummy, 3.0)
 	end
 	RemoveDummyTimedInit(missileDummy, 0.4)
+
+	StopSoundOnUnit(timerIndexSound)
+	PlaySoundOnUnitInit("Hero_Techies.Suicide", explosionDummy, 4.0, false)
 	
-	
-	for key, value in pairs(AAE.allUnits) do
-		local pickedUnit = EntIndexToHScript(key)
+	for pickedUnit, _ in pairs(AAE.allUnits) do
+		--local pickedUnit = EntIndexToHScript(key)
 		local pickedUnitPos = pickedUnit:GetAbsOrigin()
 		local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
 		local vecDistUnitExplosion = pickedUnitPos - newBombLoc
@@ -87,19 +91,19 @@ end
 function OnSpellStart ( keys )
 	local caster = keys.caster
 	local casterOwner = caster:GetOwner()
-	local missileDummy
 	local casterLoc = caster:GetAbsOrigin()
-	local intervalCount = 0
 	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
 	local timerIndex = GetTimerIndex()
 	
-	missileDummy = CreateUnitByName("aae_dummy_mage_mcBomb_missile", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
+	local missileDummy = CreateUnitByName("aae_dummy_mage_mcBomb_missile", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
 	missileDummy:FindAbilityByName("aae_d_mage_mcBomb_missile"):SetLevel(1)
+
+	local timerIndexSound = PlaySoundOnUnitInit("Hero_Batrider.Firefly.loop", missileDummy, 2.0, true)
 	
 	local def = { num = 250, location = casterLoc, duration = 0.1, color = Vector(0,255,0) }
 	ShowFloatingNum(def)
 	
-	AAE.timerTable[timerIndex] = { caster = caster, missileDummy = missileDummy, castLoc = casterLoc, lastBombLoc = casterLoc, intervalCount = intervalCount, cliffLevel = cliffLevel }
+	AAE.timerTable[timerIndex] = { caster = caster, missileDummy = missileDummy, castLoc = casterLoc, lastBombLoc = casterLoc, intervalCount = 0, cliffLevel = cliffLevel, timerIndexSound = timerIndexSound }
 	
 	AAE.Utils.Timer.Register( McBombUpdate, 0.01, timerIndex )
 end

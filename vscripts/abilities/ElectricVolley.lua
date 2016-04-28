@@ -64,56 +64,20 @@ end
 
 
 
-function OnSpellStart ( keys )
-	local caster = keys.caster
-	local casterOwner = caster:GetOwner()
-	local casterLoc = caster:GetAbsOrigin()
-	local castDummy
-	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
-	
-	local targetPoint = nil
-	if (keys.Target == "POINT" and keys.target_points[1]) then
-		targetPoint = keys.target_points[1]
-	else
-		return
-	end
-	targetPoint.z = cliffLevel
-	
-	local normVecDir = targetPoint - casterLoc
-	local vecDirLen = math.sqrt((normVecDir.x)*(normVecDir.x)+(normVecDir.y)*(normVecDir.y))
-	if (vecDirLen ~= 0) then
-		normVecDir=normVecDir/vecDirLen
-	else
-		normVecDir=Vector(1.0, 0.0, 0.0)
-	end
-	
-	castDummy = CreateUnitByName("aae_dummy_mage_pyroblast_cast", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
-	castDummy:FindAbilityByName("aae_d_mage_pyroblast_cast"):SetLevel(1)
-	
-	local timerIndex = GetTimerIndex()
-	AAE.timerTable[timerIndex] = { caster = caster, intervalCount = 0, normVecDir = normVecDir, castDummy = castDummy, castLoc = casterLoc, cliffLevel = cliffLevel, channelStartTime = GameRules:GetGameTime(), missileGroup = {} }
-	AAE.Utils.Timer.Register( ElectricVolley_ChannelUpdate, 0.01, timerIndex )
-	AAE.Utils.Timer.Register( ElectricVolley_MissileUpdate, 0.01, timerIndex )
-end
-
-
-
 function ElectricVolley_ChannelUpdate (timerIndex)
 	local caster = AAE.timerTable[timerIndex].caster
 	local casterOwner = caster:GetOwner()
 	local casterLoc = caster:GetAbsOrigin()
 	local countdownLoc = casterLoc + Vector(0,128,0)
 	local intervalCount = AAE.timerTable[timerIndex].intervalCount + 1
-	local normVecDir = AAE.timerTable[timerIndex].normVecDir
 	local castDummy = AAE.timerTable[timerIndex].castDummy
 	local castLoc = AAE.timerTable[timerIndex].castLoc
-	local cliffLevel = AAE.timerTable[timerIndex].cliffLevel
 	local channelStartTime = AAE.timerTable[timerIndex].channelStartTime
 	local missileGroup = AAE.timerTable[timerIndex].missileGroup
 	AAE.timerTable[timerIndex].intervalCount = intervalCount
 	
 	if (castLoc == casterLoc) then
-		if (AAE.allUnits[caster:GetEntityIndex()].lastChannelStartTime == nil or AAE.allUnits[caster:GetEntityIndex()].lastChannelStartTime <= channelStartTime) then
+		if (AAE.allUnits[caster].lastChannelStartTime == nil or AAE.allUnits[caster].lastChannelStartTime <= channelStartTime) then
 			local def = { num = tonumber(500 - 3.3333333 * intervalCount), location = countdownLoc, duration = 0.1, color = Vector(255,0,0) }
 			ShowFloatingNum(def)
 			
@@ -142,16 +106,49 @@ end
 
 
 
-function OnChannelInterrupted ( keys )
+function OnSpellStart ( keys )
 	local caster = keys.caster
-	--GameRules:SendCustomMessage ("CI", 1, 1)
-	AAE.allUnits[caster:GetEntityIndex()].lastChannelStartTime = GameRules:GetGameTime()
+	local casterOwner = caster:GetOwner()
+	local casterLoc = caster:GetAbsOrigin()
+	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
+
+	local targetPoint = nil
+	if (keys.Target == "POINT" and keys.target_points[1]) then
+		targetPoint = keys.target_points[1]
+	else
+		return
+	end
+	targetPoint.z = cliffLevel
+
+	local normVecDir = targetPoint - casterLoc
+	local vecDirLen = math.sqrt((normVecDir.x)*(normVecDir.x)+(normVecDir.y)*(normVecDir.y))
+	if (vecDirLen ~= 0) then
+		normVecDir=normVecDir/vecDirLen
+	else
+		normVecDir=Vector(1.0, 0.0, 0.0)
+	end
+
+	local castDummy = CreateUnitByName("aae_dummy_mage_pyroblast_cast", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
+	castDummy:FindAbilityByName("aae_d_mage_pyroblast_cast"):SetLevel(1)
+
+	local timerIndex = GetTimerIndex()
+	AAE.timerTable[timerIndex] = { caster = caster, intervalCount = 0, normVecDir = normVecDir, castDummy = castDummy, castLoc = casterLoc, cliffLevel = cliffLevel, channelStartTime = GameRules:GetGameTime(), missileGroup = {} }
+	AAE.Utils.Timer.Register( ElectricVolley_ChannelUpdate, 0.01, timerIndex )
+	AAE.Utils.Timer.Register( ElectricVolley_MissileUpdate, 0.01, timerIndex )
 end
 
 
 
+--GameRules:SendCustomMessage ("CI", 1, 1)
+function OnChannelInterrupted ( keys )
+	local caster = keys.caster
+	AAE.allUnits[caster].lastChannelStartTime = GameRules:GetGameTime()
+end
+
+
+
+--GameRules:SendCustomMessage ("CF", 1, 1)
 function OnChannelFinish ( keys )
 	local caster = keys.caster
-	--GameRules:SendCustomMessage ("CF", 1, 1)
-	AAE.allUnits[caster:GetEntityIndex()].lastChannelStartTime = GameRules:GetGameTime()
+	AAE.allUnits[caster].lastChannelStartTime = GameRules:GetGameTime()
 end

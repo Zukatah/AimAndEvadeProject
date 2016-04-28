@@ -99,8 +99,8 @@ function UpdateLightnings()
 
     for i=1, 6, 1 do
         filterPassedGroup = { }
-        for key, value in pairs (AAE.allUnits) do
-            local pickedUnit = EntIndexToHScript(key)
+        for pickedUnit, _ in pairs (AAE.allUnits) do
+            --local pickedUnit = EntIndexToHScript(key)
             local pickedUnitLoc = pickedUnit:GetAbsOrigin()
             local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
 
@@ -126,7 +126,7 @@ function UpdateLightnings()
                 if pickedUnitLoc.x - 145.0 - pickedUnitSize < maxX then
                     if pickedUnitLoc.y + 145.0 + pickedUnitSize > minY then
                         if pickedUnitLoc.y - 145.0 - pickedUnitSize < maxY then
-                            if (AAE.allUnits[key].lightProtTime < AAE._lastTime) then
+                            if (AAE.allUnits[pickedUnit].lightProtTime < AAE.currentTime) then
                                 filterPassedGroup[pickedUnit] = true
                             end
                         end
@@ -135,7 +135,7 @@ function UpdateLightnings()
             end
         end
 
-        for pickedUnit, value in pairs (filterPassedGroup) do
+        for pickedUnit, _ in pairs (filterPassedGroup) do
             local pickedUnitLoc = pickedUnit:GetAbsOrigin()
             local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
             local locX = pickedUnitLoc.x																-- x Location from pickedUnit
@@ -148,6 +148,10 @@ function UpdateLightnings()
             else
                 if (AAE.lightningTab[i].normX > 0.0) then
                     distancePar = AAE.lightningTab[i].startY - locY
+
+
+
+
                 else
                     distancePar = locY - AAE.lightningTab[i].startY
                 end
@@ -196,4 +200,16 @@ function UpdateLightnings()
         end
     end
     return 0.01
+end
+
+
+-- Create lightnings and set height to 150 after creation (can't do while creation)
+function CreateLightnings ()
+    for key, value in pairs (AAE.lightningTab) do
+        value.lightDummy = CreateUnitByName("npc_dota_lightning", Vector(value.startX, value.startY, 128), false, PlayerResource:GetPlayer(0), PlayerResource:GetPlayer(0), 0)
+        value.lightDummy:FindAbilityByName("lightning_spell_settings"):SetLevel(1)
+        value.lightDummy:SetAbsOrigin(Vector(value.lightDummy:GetAbsOrigin().x, value.lightDummy:GetAbsOrigin().y, 150))
+        value.lightParticle = ParticleManager:CreateParticle("particles/maplightnings/move/wisp_tether_map_move.vpcf", PATTACH_ABSORIGIN_FOLLOW, value.lightDummy)
+        ParticleManager:SetParticleControl(value.lightParticle, 1, Vector(value.endX, value.endY, 150.0))
+    end
 end

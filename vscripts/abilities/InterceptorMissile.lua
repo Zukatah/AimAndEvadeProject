@@ -21,7 +21,7 @@ function InteceptorMissile_HookUpdate(index)
 	if (GetBuffCountOnUnit (caster, "interceptorMissile", index) >= 1) then
 		if (caster:IsAlive() and targetMissile:IsAlive()) then
 			if (distance < 32.0) then
-				AAE.allUnits[targetMissile:entindex()] = nil
+				AAE.allUnits[targetMissile] = nil
 				targetMissile:ForceKill(true)
 				caster:SetAbsOrigin(missilePos)
 			else
@@ -48,7 +48,6 @@ function OnSpellStart ( keys )
 	local caster = keys.caster
 	local casterOwner = caster:GetOwner()
 	local casterLoc = caster:GetAbsOrigin()
-	local intervalCount = 0
 	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
 	
 	local targetPoint = nil
@@ -71,8 +70,8 @@ function OnSpellStart ( keys )
 	local minDistSq = 40000.0
 	local minDistUnit = nil
 	
-	for key, value in pairs(AAE.allUnits) do
-		local pickedUnit = EntIndexToHScript(key)
+	for pickedUnit, _ in pairs(AAE.allUnits) do
+		--local pickedUnit = EntIndexToHScript(key)
 		local pickedUnitPos = pickedUnit:GetAbsOrigin()
 		local pickedUnitX = pickedUnitPos.x
 		local pickedUnitY = pickedUnitPos.y
@@ -112,12 +111,9 @@ function OnSpellStart ( keys )
 			local explosionDummy = CreateUnitByName("aae_dummy_mage_mcBomb_explosion", targetMissilePos, false, casterOwner, casterOwner, caster:GetTeamNumber())
 			explosionDummy:FindAbilityByName("aae_d_mage_mcBomb_explosion"):SetLevel(1)
 			RemoveDummyTimedInit(explosionDummy, 3.0)
-			AAE.allUnits[minDistUnit:entindex()] = nil
+			AAE.allUnits[minDistUnit] = nil
 			minDistUnit:ForceKill(true)
 			caster:SetAbsOrigin(targetMissilePos)
 		end
 	end
-	
-	
-
 end

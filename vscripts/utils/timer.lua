@@ -8,10 +8,7 @@ end
 
 
 function AAE.Utils.Timer.Init()
-	local GameMode = GameRules:GetGameModeEntity()
-
 	AAE.Utils.Timer._functions = {}
-
 	AAE.Utils.Timer._counter = GameRules:GetGameTime()
 end
 

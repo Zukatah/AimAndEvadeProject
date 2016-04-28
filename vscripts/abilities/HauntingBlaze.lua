@@ -35,14 +35,14 @@ function HauntingBlazeUpdate(index) --Create up to 18 lightning instances
 		end
 	end
 	
-	curPoint = VectorInMapBounds(Vector(castLoc.x + intervalCount * 40.0 * normVecDir.x, castLoc.y + intervalCount * 40.0 * normVecDir.y, 0.0) - Vector(-normVecDir.y * distancePar, normVecDir.x * distancePar, 0.0))
+	curPoint = VectorInMapBounds(Vector(castLoc.x + intervalCount * 30.0 * normVecDir.x, castLoc.y + intervalCount * 30.0 * normVecDir.y, 0.0) - Vector(-normVecDir.y * distancePar, normVecDir.x * distancePar, 0.0))
 	local newCliffLevel = (GetGroundPosition(curPoint, nil)).z
 	
 	if (cliffLevel + 5.0 < newCliffLevel) then
 		curPoint = oldMissileLoc
 	else
 		missileDummy:SetAbsOrigin(curPoint)
-		if (intervalCount >= 100) then
+		if (intervalCount >= 133) then
 		else
 			local explosion = IsMissileColliding (caster, curPoint, hauntingBlaze_collisionSize)
 			
@@ -56,9 +56,11 @@ function HauntingBlazeUpdate(index) --Create up to 18 lightning instances
 	explosionDummy:FindAbilityByName("aae_d_mage_fireball_explosion"):SetLevel(1)
 	RemoveDummyTimedInit(explosionDummy, 3.0)
 	RemoveDummyTimedInit(missileDummy, 0.4)
+
+	PlaySoundOnUnitInit("Hero_OgreMagi.Fireblast.Target", explosionDummy, 2.0, false)
 	
-	for key, value in pairs(AAE.allUnits) do
-		local pickedUnit = EntIndexToHScript(key)
+	for pickedUnit, _ in pairs(AAE.allUnits) do
+		--local pickedUnit = EntIndexToHScript(key)
 		local pickedUnitPos = pickedUnit:GetAbsOrigin()
 		local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
 		local vecDistUnitExplosion = pickedUnitPos - curPoint
@@ -93,8 +95,6 @@ function OnSpellStart ( keys )
 	local caster = keys.caster
 	local casterOwner = caster:GetOwner()
 	local castLoc = caster:GetAbsOrigin()
-	local missileDummy
-	local intervalCount = 0
 	local cliffLevel = (GetGroundPosition(castLoc, nil)).z
 	local timerIndex = GetTimerIndex()
 	
@@ -114,9 +114,11 @@ function OnSpellStart ( keys )
 		normVecDir=Vector(1.0, 0.0, 0.0)
 	end
 	
-	missileDummy = CreateUnitByName("aae_dummy_mage_fireball_missile", castLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
+	local missileDummy = CreateUnitByName("aae_dummy_mage_fireball_missile", castLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
 	missileDummy:FindAbilityByName("aae_d_mage_fireball_missile"):SetLevel(1)
+
+	PlaySoundOnUnitInit("Hero_Batrider.Flamebreak", missileDummy, 2.0, false)
 	
-	AAE.timerTable[timerIndex] = { caster = caster, castLoc = castLoc, missileDummy = missileDummy, intervalCount = intervalCount, cliffLevel = cliffLevel, normVecDir = normVecDir }
+	AAE.timerTable[timerIndex] = { caster = caster, castLoc = castLoc, missileDummy = missileDummy, intervalCount = 0, cliffLevel = cliffLevel, normVecDir = normVecDir }
 	AAE.Utils.Timer.Register( HauntingBlazeUpdate, 0.01, timerIndex )
 end

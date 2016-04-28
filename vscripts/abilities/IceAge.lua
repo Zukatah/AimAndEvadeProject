@@ -33,8 +33,8 @@ function IceAge_MissileUpdate(timerindex)
 		RemoveDummyTimedInit(explosionDummy, 3.0)
 		RemoveDummyTimedInit(missileDummy, 0.2)
 		
-		for key, value in pairs(AAE.allUnits) do
-			local pickedUnit = EntIndexToHScript(key)
+		for pickedUnit, _ in pairs(AAE.allUnits) do
+			--local pickedUnit = EntIndexToHScript(key)
 			local pickedUnitPos = pickedUnit:GetAbsOrigin()
 			local pickedUnitSize = AAE.unitTypeInfo[pickedUnit:GetUnitName()].collisionSize
 			local vecDistUnitExplosion = pickedUnitPos - newPos
@@ -61,42 +61,8 @@ end
 
 
 
-function OnSpellStart ( keys )
-	local caster = keys.caster
-	local casterOwner = caster:GetOwner()
-	local casterLoc = caster:GetAbsOrigin()
-	local castDummy
-	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
-	
-	local targetPoint = nil
-	if (keys.Target == "POINT" and keys.target_points[1]) then
-		targetPoint = keys.target_points[1]
-	else
-		return
-	end
-	targetPoint.z = cliffLevel
-	
-	local normVecDir = targetPoint - casterLoc
-	local vecDirLen = math.sqrt((normVecDir.x)*(normVecDir.x)+(normVecDir.y)*(normVecDir.y))
-	if (vecDirLen ~= 0) then
-		normVecDir=normVecDir/vecDirLen
-	else
-		normVecDir=Vector(1.0, 0.0, 0.0)
-	end
-	
-	castDummy = CreateUnitByName("aae_dummy_mage_pyroblast_cast", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
-	castDummy:FindAbilityByName("aae_d_mage_pyroblast_cast"):SetLevel(1)
-	
-	local timerIndex = GetTimerIndex()
-	AAE.timerTable[timerIndex] = { caster = caster, intervalCount = 0, normVecDir = normVecDir, targetPoint = targetPoint, castDummy = castDummy, castLoc = casterLoc, channelStartTime = GameRules:GetGameTime() }
-	AAE.Utils.Timer.Register( IceAge_ChannelUpdate, 0.01, timerIndex )
-end
-
-
-
 function IceAge_ChannelUpdate (timerIndex)
 	local caster = AAE.timerTable[timerIndex].caster
-	local casterOwner = caster:GetOwner()
 	local casterLoc = caster:GetAbsOrigin()
 	local countdownLoc = casterLoc + Vector(0,128,0)
 	local intervalCount = AAE.timerTable[timerIndex].intervalCount + 1
@@ -108,7 +74,7 @@ function IceAge_ChannelUpdate (timerIndex)
 	AAE.timerTable[timerIndex].intervalCount = intervalCount
 	
 	if (castLoc == casterLoc) then
-		if (AAE.allUnits[caster:GetEntityIndex()].lastChannelStartTime == nil or AAE.allUnits[caster:GetEntityIndex()].lastChannelStartTime <= channelStartTime) then
+		if (AAE.allUnits[caster].lastChannelStartTime == nil or AAE.allUnits[caster].lastChannelStartTime <= channelStartTime) then
 			local def = { num = tonumber(150 - 3.3333333 * intervalCount), location = countdownLoc, duration = 0.1, color = Vector(255,0,0) }
 			ShowFloatingNum(def)
 			
@@ -121,7 +87,8 @@ function IceAge_ChannelUpdate (timerIndex)
 				missileDummy:FindAbilityByName("aae_d_mage_arcingSpark"):SetLevel(1)
 				
 				AAE.timerTable[timerIndex] = { caster = caster, intervalCount = 0, normVecDir = normVecDir, targetPoint = targetPoint, missileDummy = missileDummy }
-				AAE.Utils.Timer.Register( IceAge_LaunchMissile, 1.49999999, timerIndex )
+				--AAE.Utils.Timer.Register( IceAge_LaunchMissile, 1.49999999, timerIndex )
+				AAE.Utils.Timer.Register( IceAge_MissileUpdate, 1.49999999, timerIndex )
 			end
 		end
 	end
@@ -131,22 +98,54 @@ end
 
 
 
-function IceAge_LaunchMissile (timerIndex)
-	AAE.Utils.Timer.Register( IceAge_MissileUpdate, 0.01, timerIndex )
+function OnSpellStart ( keys )
+	local caster = keys.caster
+	local casterOwner = caster:GetOwner()
+	local casterLoc = caster:GetAbsOrigin()
+	local cliffLevel = (GetGroundPosition(casterLoc, nil)).z
+
+	local targetPoint = nil
+	if (keys.Target == "POINT" and keys.target_points[1]) then
+		targetPoint = keys.target_points[1]
+	else
+		return
+	end
+	targetPoint.z = cliffLevel
+
+	local normVecDir = targetPoint - casterLoc
+	local vecDirLen = math.sqrt((normVecDir.x)*(normVecDir.x)+(normVecDir.y)*(normVecDir.y))
+	if (vecDirLen ~= 0) then
+		normVecDir=normVecDir/vecDirLen
+	else
+		normVecDir=Vector(1.0, 0.0, 0.0)
+	end
+
+	local castDummy = CreateUnitByName("aae_dummy_mage_pyroblast_cast", casterLoc, false, casterOwner, casterOwner, caster:GetTeamNumber())
+	castDummy:FindAbilityByName("aae_d_mage_pyroblast_cast"):SetLevel(1)
+
+	local timerIndex = GetTimerIndex()
+	AAE.timerTable[timerIndex] = { caster = caster, intervalCount = 0, normVecDir = normVecDir, targetPoint = targetPoint, castDummy = castDummy, castLoc = casterLoc, channelStartTime = GameRules:GetGameTime() }
+	AAE.Utils.Timer.Register( IceAge_ChannelUpdate, 0.01, timerIndex )
 end
 
 
 
+--function IceAge_LaunchMissile (timerIndex)
+--	AAE.Utils.Timer.Register( IceAge_MissileUpdate, 0.01, timerIndex )
+--end
+
+
+
+--GameRules:SendCustomMessage ("CI", 1, 1)
 function OnChannelInterrupted ( keys )
 	local caster = keys.caster
-	--GameRules:SendCustomMessage ("CI", 1, 1)
-	AAE.allUnits[caster:GetEntityIndex()].lastChannelStartTime = GameRules:GetGameTime()
+	AAE.allUnits[caster].lastChannelStartTime = GameRules:GetGameTime()
 end
 
 
 
+--GameRules:SendCustomMessage ("CF", 1, 1)
 function OnChannelFinish ( keys )
 	local caster = keys.caster
-	--GameRules:SendCustomMessage ("CF", 1, 1)
-	AAE.allUnits[caster:GetEntityIndex()].lastChannelStartTime = GameRules:GetGameTime()
+	AAE.allUnits[caster].lastChannelStartTime = GameRules:GetGameTime()
 end
